@@ -23,3 +23,7 @@ puts "Tyler Rollins"
 puts "Richard Curteis"
 puts "Anna Yanova"
 puts "Andrew Cumine"
+
+print "Overall, we have "
+print 23
+puts " great students"
