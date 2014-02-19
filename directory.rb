@@ -47,8 +47,8 @@ end
 =end
 
 def print_header
-  puts "The students of my cohort at Makers Academy"
-  puts "-------------"
+  puts "The students of my cohort at Makers Academy".center(200)
+  puts "-------------".center(200)
 end
 
 =begin
@@ -65,7 +65,7 @@ def print(students)
   student = {}
   while i < students.length
     student = students[i]
-    puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
+    puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
     i += 1
   end
 end
@@ -74,7 +74,7 @@ end
 
 
 def print_footer(names)
-  puts "Overall, we have #{names.length} great students"
+  puts "Overall, we have #{names.length} great students".center(200)
 end
 
 #students = input_students
