@@ -25,6 +25,7 @@ students = [
    {:name => "Andrew Cumine",:cohort => :february}
 ]
 
+
 =begin
 def input_students
   puts "Please enter the names of the students"
@@ -46,6 +47,7 @@ def input_students
 end
 =end
 
+
 def print_header
   puts "The students of my cohort at Makers Academy".center(200)
   puts "-------------".center(200)
@@ -62,7 +64,6 @@ end
 
 def print(students)
   i = 0
-  student = {}
   while i < students.length
     student = students[i]
     puts "#{i + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
