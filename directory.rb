@@ -24,8 +24,6 @@
 #   {:name => "Anna Yanova", :cohort => :february},
 #   {:name => "Andrew Cumine",:cohort => :february}
 #]
-#
-#
 
 
 ## nothing happens until we call the methods
