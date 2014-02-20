@@ -66,8 +66,12 @@ end
 
 
 def print_students(students)
-  students.each_with_index do |student, index|
-    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
+  if students.length == 0
+    puts "There are no students".center(200)
+  else
+    students.each_with_index do |student, index|
+      puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
+    end
   end
 end
 
