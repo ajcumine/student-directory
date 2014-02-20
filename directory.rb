@@ -1,9 +1,3 @@
-
-
-### NEED TO UPDATE CODE TO USE GLOBAL VARIABLE @students
-
-
-
 @students = [] # an empty array accessible to all methods
 
 def interactive_menu
