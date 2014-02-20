@@ -1,5 +1,34 @@
-# let's put all student's into an array
+def interactive_menu
+  loop do
+    # 1. print the menu and ask the user what to do
+    puts "1. Input the students"
+    puts "2. Show the students"
+    puts "9. Exit"
+    # 2. read the input and save it into a variable
+    selection = gets.chomp
+    # 3. do what the user has asked
+    case selection
+    when "1"
+      students = input_students # input the students
+    when "2"
+      # show the students
+      print_header
+      print_students(students)
+      print_footer(students)
+    when "9"
+      exit # this will terminate the program
+    else
+      puts "I don't know what you meant, please try again"
+    end
+  end
+end
+
+
+
+
 =begin
+# let's put all student's into an array
+
 students = [
    {:name => "Mario Gintili", :cohort => :february},
    {:name => "Mikhail Dubov", :cohort => :february},
@@ -26,6 +55,8 @@ students = [
    {:name => "Andrew Cumine",:cohort => :february}
 ]
 =end
+
+
 
 
 def input_students
@@ -57,12 +88,10 @@ def input_students
 end
 
 
-
 def print_header
   puts "The students of my cohort at Makers Academy".center(200)
   puts "-------------".center(200)
 end
-
 
 
 def print_students(students)
@@ -76,6 +105,8 @@ def print_students(students)
 end
 
 
+
+=begin
 def print_students_by_cohort(students)
   puts "-------------".center(200)
   puts "The students sorted by cohort".center(200)
@@ -84,6 +115,7 @@ def print_students_by_cohort(students)
     puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
   end
 end
+=end
 
 
 =begin
@@ -106,8 +138,11 @@ def print_footer(names)
   end
 end
 
+
+=begin
 students = input_students
 print_header
 print_students(students)
 print_students_by_cohort(students)
 print_footer(students)
+=end
