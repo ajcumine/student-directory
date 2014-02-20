@@ -5,19 +5,7 @@ def interactive_menu
     # 1. print the menu and ask the user what to do
     print_menu
     # 2. read the input and save it into a variable
-    selection = gets.chomp
-    # 3. do what the user has asked
-    case selection
-    when "1"
-      @students = input_students # input the students
-    when "2"
-      # show the students
-      show_students
-    when "9"
-      exit # this will terminate the program
-    else
-      puts "I don't know what you meant, please try again"
-    end
+    process(gets.chomp)    
   end
 end
 
@@ -55,7 +43,7 @@ def print_header
 end
 
 
-def print_students
+def print_students_list
   if @students.length == 0
     puts "There are no students".center(200)
   else
@@ -74,16 +62,34 @@ def print_footer
   end
 end
 
+
 def print_menu
   puts "1. Input the students"
   puts "2. Show the students"
   puts "9. Exit" # 9 because we will be adding more items
 end
 
+
 def show_students
   print_header
-  print_students
+  print_students_list
   print_footer
 end
+
+
+def process(selection)
+  case selection
+  when "1"
+    @students = input_students # input the students
+  when "2"
+    # show the students
+    show_students
+  when "9"
+    exit # this will terminate the program
+  else
+    puts "I don't know what you meant, please try again"
+  end
+end
+
 
 interactive_menu
