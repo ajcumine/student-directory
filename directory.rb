@@ -40,7 +40,7 @@ def input_students
   while !name.empty? do
     #get the student cohort
     print "Student cohort: "
-    month = gets.chomp
+    month = gets.chomp.downcase.to_sym
     #add default month
     if month.empty?
       month = "default"
@@ -72,6 +72,15 @@ def print_students(students)
 end
 
 
+def print_students_by_cohort(students)
+  puts "-------------".center(200)
+  puts "The students sorted by cohort".center(200)
+  sorted = students.sort {|a,b| a[:cohort] <=> b[:cohort]} #sort by cohort
+  sorted.each_with_index do |student, index|
+    puts "#{index + 1}. #{student[:name]} (#{student[:cohort]} cohort)".center(200)
+  end
+end
+
 
 =begin
 def print(students)
@@ -86,10 +95,15 @@ end
 
 
 def print_footer(names)
-  puts "Overall, we have #{names.length} great students".center(200)
+  if names.length == 1
+    puts "Overall, we have 1 great student".center(200)
+  else
+    puts "Overall, we have #{names.length} great students".center(200)
+  end
 end
 
 students = input_students
 print_header
 print_students(students)
+print_students_by_cohort(students)
 print_footer(students)
