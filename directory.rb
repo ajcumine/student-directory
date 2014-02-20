@@ -1,4 +1,5 @@
 def interactive_menu
+  students = []
   loop do
     # 1. print the menu and ask the user what to do
     puts "1. Input the students"
@@ -146,3 +147,5 @@ print_students(students)
 print_students_by_cohort(students)
 print_footer(students)
 =end
+
+interactive_menu
