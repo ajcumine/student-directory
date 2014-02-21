@@ -2,38 +2,22 @@
 
 def interactive_menu
   loop do
-    # 1. print the menu and ask the user what to do
-    print_menu
-    # 2. read the input and save it into a variable
-    process(STDIN.gets.chomp)    
+    print_menu # 1. print the menu and ask the user what to do
+    process(STDIN.gets.chomp) # 2. read the input and save it into a variable  
   end
 end
 
 
 def input_students
-  puts "Please enter the names of the students and their cohort".center(200)
+  puts "Please enter the names of the students".center(200)
   puts "To finish, just hit return twice".center(200)
-  print "Student name: "
-  #get the first name
-  name = STDIN.gets.chomp
-  # while the name is not empty, repeat this code
-  while !name.empty? do
-    #get the student cohort
-    print "Student cohort: "
-    cohort = STDIN.gets.chomp.downcase
-    #add default cohort
-    if cohort.empty?
-      cohort = "default"
-    end
-    # add the student hash to the array
-    add_student(name, cohort)
+  name = STDIN.gets.chomp #get the first name
+  while !name.empty? do # while the name is not empty, repeat this code
+    add_student(name, :february) # add the student hash to the array
     puts "Now we have #{@students.length} students"
-    # get another name from the user
-    print "Student name: "
-    name = STDIN.gets.chomp
+    name = STDIN.gets.chomp # get another name from the user
   end
-  #return the array of students
-  @students
+  @students #return the array of students
 end
 
 
@@ -98,10 +82,8 @@ end
 
 
 def save_students
-  # open file for writing
-  file = File.open("students.csv", "w")
-  # iterate over the array of students
-  @students.each do |student|
+  file = File.open("students.csv", "w") # open file for writing
+  @students.each do |student| # iterate over the array of students
     student_data = [student[:name], student[:cohort]]
     csv_line = student_data.join(",")
     file.puts csv_line
@@ -118,6 +100,7 @@ def load_students(filename = "students.csv")
   end
   file.close
 end
+
 
 def add_student(name, cohort)
   @students << {:name => name, :cohort => cohort.to_sym}
