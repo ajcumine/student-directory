@@ -5,7 +5,7 @@ def interactive_menu
     # 1. print the menu and ask the user what to do
     print_menu
     # 2. read the input and save it into a variable
-    process(gets.chomp)    
+    process(STDIN.gets.chomp)    
   end
 end
 
@@ -15,22 +15,22 @@ def input_students
   puts "To finish, just hit return twice".center(200)
   print "Student name: "
   #get the first name
-  name = gets.chomp
+  name = STDIN.gets.chomp
   # while the name is not empty, repeat this code
   while !name.empty? do
     #get the student cohort
     print "Student cohort: "
-    month = gets.chomp.downcase.to_sym
-    #add default month
-    if month.empty?
-      month = "default"
+    cohort = STDIN.gets.chomp.downcase
+    #add default cohort
+    if cohort.empty?
+      cohort = "default"
     end
     # add the student hash to the array
-    @students << {:name => name, :cohort => month}
+    add_student(name, cohort)
     puts "Now we have #{@students.length} students"
     # get another name from the user
     print "Student name: "
-    name = gets.chomp
+    name = STDIN.gets.chomp
   end
   #return the array of students
   @students
@@ -84,7 +84,6 @@ def process(selection)
   when "1"
     @students = input_students # input the students
   when "2"
-    # show the students
     show_students
   when "3"
     save_students
@@ -111,14 +110,31 @@ def save_students
 end
 
 
-def load_students
-  file = File.open("students.csv", "r")
+def load_students(filename = "students.csv")
+  file = File.open(filename, "r")
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << {:name => name, :cohort => cohort.to_sym}
+    add_student(name, cohort)
   end
   file.close
 end
 
+def add_student(name, cohort)
+  @students << {:name => name, :cohort => cohort.to_sym}
+end
 
+
+def try_load_students
+  filename = ARGV.first # first argument from the command line
+  return if filename.nil? #get out of method if it isn't given
+  if File.exists?(filename) # if it exists
+    load_students(filename)
+    puts "Loaded #{@students.length} from #{filename}"
+  else # if it doesn't exist
+    puts "Sorry, #{filename} doesn't exist"
+    exit # quit the program
+  end
+end
+
+try_load_students
 interactive_menu
