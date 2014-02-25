@@ -1,3 +1,4 @@
+require 'csv'
 @students = [] # an empty array accessible to all methods
 
 def interactive_menu
@@ -82,22 +83,19 @@ end
 
 
 def save_students
-  File.open("students.csv", "w") do |file|# open file for writing
+  CSV.open("students.csv", "w") do |file|# open file for writing
     @students.each do |student| # iterate over the array of students
       student_data = [student[:name], student[:cohort]]
-      csv_line = student_data.join(",")
-      file.puts csv_line
+      file << student_data
     end
   end
 end
 
 
 def load_students(filename = "students.csv")
-  File.open(filename, "r") do |file|
-    file.readlines.each do |line|
-      name, cohort = line.chomp.split(',')
-      add_student(name, cohort)
-    end
+  CSV.foreach(filename) do |line|
+    name, cohort = line
+    add_student(name, cohort)
   end
 end
 
