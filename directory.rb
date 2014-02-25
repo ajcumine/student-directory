@@ -83,7 +83,9 @@ end
 
 
 def save_students
-  CSV.open("students.csv", "w") do |file|# open file for writing
+  puts "Save file as:"
+  save_file = gets.chomp
+  CSV.open("#{save_file}", "w") do |file|# open file for writing
     @students.each do |student| # iterate over the array of students
       student_data = [student[:name], student[:cohort]]
       file << student_data
@@ -92,8 +94,10 @@ def save_students
 end
 
 
-def load_students(filename = "students.csv")
-  CSV.foreach(filename) do |line|
+def load_students
+  puts "Please name the file to load:"
+  load_file = gets.chomp
+  CSV.foreach("#{load_file}") do |line|
     name, cohort = line
     add_student(name, cohort)
   end
